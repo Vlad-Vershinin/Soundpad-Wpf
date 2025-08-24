@@ -4,10 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Soundpad.Views"
+        xmlns:vm="clr-namespace:Soundpad.ViewModels"
         mc:Ignorable="d"
         Title="Soundpad" 
         Height="650" 
         Width="500">
+    
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -24,6 +30,12 @@
 
                 <MenuItem Header="Edit">
                     <MenuItem/>
+                </MenuItem>
+
+                <MenuItem Header="Reference">
+                    <MenuItem Header="Open GitHub"
+                            Command="{Binding OpenUrlCommand}"
+                            CommandParameter="https://github.com/Vlad-Vershinin/Soundpad-Wpf"/>
                 </MenuItem>
             </Menu>
         </StackPanel>
