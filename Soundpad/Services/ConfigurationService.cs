@@ -15,7 +15,6 @@ public class ConfigurationService
         string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         string AppFolderPath = Path.Combine(appDataPath, "Soundpad");
         _configPath = Path.Combine(AppFolderPath, DefaultConfigName);
-        Debug.WriteLine(_configPath);
 
         if (!Directory.Exists(AppFolderPath))
         {

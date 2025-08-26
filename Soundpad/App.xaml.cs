@@ -12,11 +12,10 @@ public partial class App : Application
 
     protected override async void OnStartup(StartupEventArgs e)
     {
+        base.OnStartup(e);
+
         _configService = new ConfigurationService();
         Config = await _configService.LoadConfigAsync();
-
-        var mainWindow = new MainWindow();
-        mainWindow.Show();
     }
 
     protected override async void OnExit(ExitEventArgs e)
