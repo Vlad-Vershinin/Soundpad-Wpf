@@ -8,13 +8,14 @@ namespace Soundpad.ViewModels;
 
 public class MainViewModel : ReactiveObject
 {
-    private SoundsManagerService SoundsManagerService { get; }
+    private readonly SoundsManagerService _soundsManagerService;
+    public SoundsManagerService SoundsManagerService => _soundsManagerService;
 
     public ReactiveCommand<string, Unit> OpenUrlCommand { get; }
 
     public MainViewModel(AppConfig config)
     {
-        SoundsManagerService = new(config);
+        _soundsManagerService = new(config);
 
         OpenUrlCommand = ReactiveCommand.Create<string>(OpenUrl);
     }

@@ -1,11 +1,13 @@
-﻿using System.IO;
+﻿using ReactiveUI.Fody.Helpers;
+using System.IO;
+using System.Windows.Navigation;
 
 namespace Soundpad.Models;
 
 public class Category
 {
     public string Name { get; }
-    public List<Sound> Sounds { get; } = new();
+    [Reactive] public List<Sound> Sounds { get; } = new();
 
     public Category(string path)
     {

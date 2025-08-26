@@ -4,21 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Soundpad.Views"
-        xmlns:vm="clr-namespace:Soundpad.ViewModels"
         mc:Ignorable="d"
         Title="Soundpad" 
         Height="650" 
         Width="500">
     
-    
-    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel>
+        <StackPanel Grid.ColumnSpan="2">
             <Menu>
                 <MenuItem Header="File">
                     <MenuItem Header="Add sound"/>
@@ -37,5 +38,20 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
+
+        <ListBox Grid.Row="1" BorderThickness="0"
+                 ItemsSource="{Binding SoundsManagerService.Categories}"
+                 SelectionMode="Single">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <TextBlock Text="{Binding Name}" 
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
