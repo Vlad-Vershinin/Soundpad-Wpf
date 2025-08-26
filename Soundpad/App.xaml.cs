@@ -1,13 +1,32 @@
-﻿using System.Configuration;
-using System.Data;
+﻿using Soundpad.Configuration;
+using Soundpad.Services;
+using Soundpad.Views;
 using System.Windows;
 
 namespace Soundpad;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
 public partial class App : Application
 {
+    public static AppConfig Config { get; private set; }
+    private ConfigurationService _configService;
+
+    protected override async void OnStartup(StartupEventArgs e)
+    {
+        _configService = new ConfigurationService();
+        Config = await _configService.LoadConfigAsync();
+
+        var mainWindow = new MainWindow();
+        mainWindow.Show();
+    }
+
+    protected override async void OnExit(ExitEventArgs e)
+    {
+        if (Config != null)
+        {
+            await _configService.SaveConfigAsync(Config);
+        }
+
+        base.OnExit(e);
+    }
 }
 

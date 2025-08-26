@@ -13,7 +13,9 @@ public class ConfigurationService
     public ConfigurationService()
     {
         string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        string AppFolderPath = Path.Combine(appDataPath, "Soundpad", DefaultConfigName);
+        string AppFolderPath = Path.Combine(appDataPath, "Soundpad");
+        _configPath = Path.Combine(AppFolderPath, DefaultConfigName);
+        Debug.WriteLine(_configPath);
 
         if (!Directory.Exists(AppFolderPath))
         {
@@ -21,7 +23,7 @@ public class ConfigurationService
         }
     }
 
-    private bool IsFirstRun()
+    public bool IsFirstRun()
     {
         return !File.Exists(_configPath);
     }
