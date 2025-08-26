@@ -10,9 +10,7 @@
         Height="650" 
         Width="500">
     
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
+    
     
     <Grid>
         <Grid.RowDefinitions>
@@ -22,7 +20,7 @@
 
         <StackPanel>
             <Menu>
-                <MenuItem Header="File" Click="MenuItem_Click">
+                <MenuItem Header="File">
                     <MenuItem Header="Add sound"/>
                     <Separator/>
                     <MenuItem Header="Exit" InputGestureText="Alt+F4"/>

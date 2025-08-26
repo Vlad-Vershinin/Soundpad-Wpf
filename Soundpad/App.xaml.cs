@@ -1,5 +1,6 @@
 ﻿using Soundpad.Configuration;
 using Soundpad.Services;
+using Soundpad.ViewModels;
 using Soundpad.Views;
 using System.Windows;
 
@@ -7,7 +8,7 @@ namespace Soundpad;
 
 public partial class App : Application
 {
-    public static AppConfig Config { get; private set; }
+    public AppConfig Config { get; private set; }
     private ConfigurationService _configService;
 
     protected override async void OnStartup(StartupEventArgs e)
@@ -16,6 +17,11 @@ public partial class App : Application
 
         _configService = new ConfigurationService();
         Config = await _configService.LoadConfigAsync();
+
+        var MainWindowVM = new MainViewModel(Config);
+
+        var MainWindow = new MainWindow { DataContext = MainWindowVM };
+        MainWindow.Show();
     }
 
     protected override async void OnExit(ExitEventArgs e)

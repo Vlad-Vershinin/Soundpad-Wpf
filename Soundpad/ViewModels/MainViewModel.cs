@@ -1,4 +1,6 @@
 ﻿using ReactiveUI;
+using Soundpad.Configuration;
+using Soundpad.Services;
 using System.Diagnostics;
 using System.Reactive;
 
@@ -6,10 +8,14 @@ namespace Soundpad.ViewModels;
 
 public class MainViewModel : ReactiveObject
 {
+    private SoundsManagerService SoundsManagerService { get; }
+
     public ReactiveCommand<string, Unit> OpenUrlCommand { get; }
 
-    public MainViewModel()
+    public MainViewModel(AppConfig config)
     {
+        SoundsManagerService = new(config);
+
         OpenUrlCommand = ReactiveCommand.Create<string>(OpenUrl);
     }
 

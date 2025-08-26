@@ -1,5 +1,6 @@
 ﻿using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using System.Diagnostics;
 using TagLib;
 
 namespace Soundpad.Models;

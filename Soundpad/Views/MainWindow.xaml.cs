@@ -11,9 +11,4 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-
-    private void MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
 }
