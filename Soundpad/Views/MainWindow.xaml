@@ -59,7 +59,12 @@
         <DataGrid Grid.Column="1"
                   Grid.Row="1"
                   ItemsSource="{Binding SelectedCategory.Sounds}"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  EnableRowVirtualization="False"
+                  HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#"
                                     Binding="{Binding Id}"/>
