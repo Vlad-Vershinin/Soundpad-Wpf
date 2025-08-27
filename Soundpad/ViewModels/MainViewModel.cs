@@ -11,14 +11,18 @@ namespace Soundpad.ViewModels;
 public class MainViewModel : ReactiveObject
 {
     private readonly SoundsManagerService _soundsManagerService;
+    private AudioPlayerService _audioPlayerService;
     public SoundsManagerService SoundsManagerService => _soundsManagerService;
     [Reactive] public Category SelectedCategory { get; set; }
+    [Reactive] public Sound SelectedSound { get; set; }
 
     public ReactiveCommand<string, Unit> OpenUrlCommand { get; }
+    public ReactiveCommand<Sound, Unit> PlaySoundCommand { get; }
 
     public MainViewModel(AppConfig config)
     {
         _soundsManagerService = new(config);
+        _audioPlayerService = new AudioPlayerService();
 
         if (SoundsManagerService != null)
         {
@@ -26,6 +30,7 @@ public class MainViewModel : ReactiveObject
         }
 
         OpenUrlCommand = ReactiveCommand.Create<string>(OpenUrl);
+        PlaySoundCommand = ReactiveCommand.CreateFromTask<Sound>(PlaySound);
     }
 
     private void OpenUrl(string url)
@@ -42,5 +47,10 @@ public class MainViewModel : ReactiveObject
         {
             Debug.WriteLine($"Error: {ex.Message}");
         }
+    }
+
+    private async Task PlaySound(Sound sound)
+    {
+        _audioPlayerService.Play(sound);
     }
 }

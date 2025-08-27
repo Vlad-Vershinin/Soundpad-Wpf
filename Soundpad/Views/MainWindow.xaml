@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Soundpad.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Soundpad" 
         Height="650" 
@@ -64,7 +65,17 @@
                   CanUserDeleteRows="False"
                   CanUserResizeRows="False"
                   EnableRowVirtualization="False"
-                  HeadersVisibility="Column">
+                  HeadersVisibility="Column"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedSound}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding DataContext.PlaySoundCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                   CommandParameter="{Binding SelectedSound}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#"
                                     Binding="{Binding Id}"/>
