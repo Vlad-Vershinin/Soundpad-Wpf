@@ -16,7 +16,7 @@ public class Category
         var files = Directory.GetFiles(path);
         foreach(var file in files)
         {
-            Sounds.Add(new Sound(file));
+            Sounds.Add(new Sound(file, Sounds.Count + 1));
         }
     }
 }
