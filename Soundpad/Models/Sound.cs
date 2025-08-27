@@ -1,5 +1,6 @@
 ﻿using ReactiveUI;
 using TagLib;
+using System.IO;
 
 namespace Soundpad.Models;
 
@@ -7,7 +8,7 @@ public class Sound : ReactiveObject
 {
     public int Id { get; }
     public string Name { get; }
-    public TimeSpan Duration { get; }
+    public string Duration { get; }
     public string Path { get; }
     public string Author { get; }
 
@@ -15,11 +16,11 @@ public class Sound : ReactiveObject
     {
         Path = path;
 
-        var file = File.Create(path);
+        var file = TagLib.File.Create(path);
 
         Id = id;
-        Name = file.Name;
-        Duration = file.Properties.Duration;
+        Name = System.IO.Path.GetFileNameWithoutExtension(path);
+        Duration = file.Properties.Duration.ToString(@"mm\:ss");
         Author = file.Tag.FirstPerformer;
     }
 }
