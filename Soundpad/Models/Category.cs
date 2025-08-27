@@ -11,7 +11,7 @@ public class Category
 
     public Category(string path)
     {
-        Name = Directory.GetParent(path).Name;
+        Name = new DirectoryInfo(path).Name;
 
         var files = Directory.GetFiles(path);
         foreach(var file in files)
