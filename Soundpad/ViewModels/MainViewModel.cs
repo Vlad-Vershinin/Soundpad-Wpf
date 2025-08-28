@@ -51,6 +51,6 @@ public class MainViewModel : ReactiveObject
 
     private async Task PlaySound(Sound sound)
     {
-        _audioPlayerService.Play(sound);
+        _audioPlayerService.PlayInMicrophone(sound);
     }
 }
